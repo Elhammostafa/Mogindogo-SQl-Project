@@ -1,0 +1,99 @@
+--count how many visits using employee id
+select assigned_employee_id,
+count(visit_count) as no_of_visits
+ from visits
+ group by
+ assigned_employee_id
+ order by no_of_visits desc
+output 
+1		3708
+30		3676
+34		3539
+-- Get the top 3 employee details that has the highest visits
+select employee_name,phone_number,email,assigned_employee_id 
+from employee 
+where assigned_employee_id = 1 
+or assigned_employee_id = 30 
+or assigned_employee_id = 34
+output	
+Bello Azibo	12	bello.azibo@ndogowater.gov	1
+Pili Zola	12	pili.zola@ndogowater.gov	30
+Rudo Imani	12	rudo.imani@ndogowater.gov	34
+
+
+SELECT
+    province_name,
+    town_name,
+    COUNT(*) AS records_per_town
+FROM
+    locations
+GROUP BY
+    province_name, town_name
+ORDER BY
+    province_name ASC,
+    records_per_town DESC;
+
+
+
+SELECT
+    location_type,
+    COUNT(*) AS num_sources
+FROM
+    location
+GROUP BY
+    location_type
+ORDER BY
+    location_type;
+Rural	23740
+Urban	15910
+
+
+SELECT
+    type_of_water_source,
+    COUNT(*) AS number_of_sources
+FROM
+    water_source
+GROUP BY
+    type_of_water_source
+ORDER BY
+    number_of_sources DESC;
+
+well	17383
+tap_in_home	7265
+tap_in_home_broken	5856
+shared_tap	5767
+river	3379
+
+SELECT
+    type_of_water_source,
+    round(AVG(number_of_people_served),0) AS ave_people_per_source
+FROM
+    water_source
+GROUP BY
+    type_of_water_source
+ORDER BY
+    type_of_water_source;
+
+river	699
+shared_tap	2071
+tap_in_home	644
+tap_in_home_broken	649
+well	279
+
+SELECT
+    type_of_water_source,
+    SUM(number_of_people_served) AS population_served
+FROM
+    water_source
+GROUP BY
+    type_of_water_source
+ORDER BY
+    population_served DESC;
+
+shared_tap	11945272
+well	4841724
+tap_in_home	4678880
+tap_in_home_broken	3799720
+river	2362544
+			
+
